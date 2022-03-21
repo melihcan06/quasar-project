@@ -27,5 +27,5 @@ const useLocalStorage = (key, defaultValue) => {
 }
 
 export const useLocalNotes = () => {
-  return useLocalStorage('notes1', []);
+  return useLocalStorage('notes2', []);
 }

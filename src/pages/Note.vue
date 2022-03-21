@@ -9,27 +9,36 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const notes = useLocalNotes()
+    const noteIdx=parseInt(router.currentRoute.value.path.split("/note/")[1]);//melih
     const note = reactive({
       title: '',
       description: '',
       content: '',
-      noteId: notes.value.length+1//melih
+      noteId: noteIdx//melih
     })
-    debugger;//melih
+    const assignNote = (newNote) =>{
+      note.value.title=newNote.title;
+      note.value.description=newNote.description;
+      note.value.content=newNote.content;
+      note.value.noteId=newNote.noteId;
+    }
+
+    //debugger;//melih
     const submit = () => {
-      const noteIdx=router.currentRoute.value.path.split("/note/")[1];
-      note = notes.values[noteIdx];
-      debugger;//melih
-      /*notes.value[]]{//unshift({//melih
+      //melih
+      debugger;
+      //note = notes.value[noteIdx];
+      //assignNote(notes.value[noteIdx]);
+      notes.value[noteIdx-1]={//melih
         ...note,
         createdAt: Date.now(),
         updatedAt: Date.now()
-      })*/
+      };
       router.push('/')
-      note.title = ''
+      /*note.title = ''
       note.description = ''
       note.content = ''
-      note.noteId = 0//melih
+      note.noteId = 0//melih*/
     }
     return { note, submit}
   }
