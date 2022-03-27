@@ -10,8 +10,12 @@ export default defineComponent({
   name: 'PageIndex',
   setup() {
     const notes = useLocalNotes()
+    debugger;
     const router = useRouter()
-    return { router, notes }
+    const openNoteCard = (noteId) => {
+      router.push(`/note/${noteId}`);
+    }
+    return { router, notes, openNoteCard }
   }
 })
 </script>
@@ -31,8 +35,8 @@ export default defineComponent({
         :key="noteId"
         :title="title"
         :description="description"
-        @click="router.push(`/note/${noteId}`)"
-      />
+        @click="openNoteCard(noteId)"
+      /><!--melih @click="router.push(`/note/${noteId}`)"-->
       <div v-if="notes.length === 0">You have not created any notes.</div>
     </Container>
   </q-page>
